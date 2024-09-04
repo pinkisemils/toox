@@ -97,6 +97,7 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
         };
 
         lspBuf = {
+          "gra" = "code_action";
           "grd" = "definition";
           "grr" = "references";
           "grt" = "type_definition";
