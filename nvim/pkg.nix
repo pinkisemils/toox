@@ -74,6 +74,14 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
           action = "buffers";
         };
       };
+      extensions = {
+        ui-select = {
+          enable = true;
+          settings.codeactions = true;
+          # specific_opts.codeactions = true;
+        };
+      };
+
     };
 
     treesitter.enable = true;
