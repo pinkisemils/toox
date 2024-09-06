@@ -60,6 +60,7 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
 
   editorconfig.enable = true;
   plugins = {
+    gitlinker.enable = true;
     fugitive.enable = true;
     nvim-autopairs.enable = true;
 
