@@ -63,6 +63,7 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
     gitlinker.enable = true;
     fugitive.enable = true;
     nvim-autopairs.enable = true;
+    trouble.enable = true;
 
     telescope = {
       enable = true;
