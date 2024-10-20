@@ -60,10 +60,29 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
 
   editorconfig.enable = true;
   plugins = {
+    web-devicons.enable = true;
+
     gitlinker.enable = true;
     fugitive.enable = true;
     nvim-autopairs.enable = true;
     trouble.enable = true;
+    
+
+    # Some AI bs
+    avante = {
+      enable = true;
+      settings = {
+        provider = "gemini";
+        gemini = {
+          # @see https://ai.google.dev/gemini-api/docs/models/gemini
+          model = "gemini-1.5-flash-latest";
+          # model = "gemini-1.5-flash",
+          temperature = 0;
+          max_tokens = 4096;
+        };
+      };
+    };
+    dressing.enable = true;
 
     telescope = {
       enable = true;
@@ -136,7 +155,7 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
 
       servers = {
         # Average webdev LSPs
-        tsserver.enable = true; # TS/JS
+        ts_ls.enable = true; # TS/JS
         cssls.enable = true; # CSS
         tailwindcss.enable = true; # TailwindCSS
         html.enable = true; # HTML
@@ -144,7 +163,7 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
         phpactor.enable = true; # PHP
         pylsp.enable = true; # Python
         marksman.enable = true; # Markdown
-        nil-ls = {
+        nil_ls = {
           enable = true;
           settings = {
             formatting.command = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
@@ -161,7 +180,7 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
         yamlls.enable = true; # YAML
         gopls.enable = true;
 
-        lua-ls = {
+        lua_ls = {
           # Lua
           enable = true;
           settings.telemetry.enable = false;
@@ -189,7 +208,7 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
     airline = {
       enable = true;
       settings = {
-        powerline_fonts = true;
+        powerline_fonts = 1;
         theme = lib.mkForce "dark";
       };
     };
@@ -197,7 +216,7 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
     gitgutter.enable = true;
     markdown-preview.enable = true;
     nix.enable = true;
-    surround.enable = true;
+    vim-surround.enable = true;
     zig.enable = true;
     rustaceanvim = {
       enable = true;
@@ -230,7 +249,6 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
     smarttab = true;
     expandtab = true;
 
-    pastetoggle = "<F10>";
   };
 
   globals.mapleader = "\\";
@@ -307,14 +325,6 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
       action = "`[v`]";
     }
 
-    # Show ctrlp buffer list
-    # {
-    #   mode = "n";
-    #   key = "<C-\\>";
-    #   action = ":CtrlPBuffer<CR>";
-    # }
-
-
     # Open quickfix buffer
     {
       mode = "n";
@@ -346,7 +356,7 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
     # Open fugitive
     {
       mode = "n";
-      key = "<Leader>g";
+      key = "<Leader>G";
       action = ":Git<CR>";
     }
 
@@ -357,6 +367,35 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
       action = ":Gdiffsplit<CR>";
     }
 
+    # Telsecope open dignostics
+    {
+      mode = "n";
+      key = "<leader>sd";
+      action = "<cmd>Telescope diagnostics bufnr=0<cr>";
+      options = {
+        desc = "Document diagnostics";
+      };
+    }
+
+    # Telescope open file browser
+    {
+      mode = "n";
+      key = "<leader>fe";
+      action = "<cmd>Telescope file_browser<cr>";
+      options = {
+        desc = "File browser";
+      };
+    }
+
+    # Telescope open file browser at current path
+    {
+      mode = "n";
+      key = "<leader>fE";
+      action = "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>";
+      options = {
+        desc = "File browser";
+      };
+    }
   ];
 
 

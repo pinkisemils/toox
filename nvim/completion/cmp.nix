@@ -3,6 +3,7 @@
     cmp-emoji = {
       enable = true;
     };
+
     cmp = {
       enable = true;
       settings = {
