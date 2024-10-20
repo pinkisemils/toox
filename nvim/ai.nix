@@ -18,16 +18,16 @@
     };
     dressing.enable = true;
 
+    # luasnip is a depdenency for copilot I guess?
+    luasnip.enable = true;
+    copilot-lua = {
+      panel.enabled = false;
+      suggestion.enabled = false;
+    };
+
+    copilot-cmp = {
+      enable = true;
+    };
   };
 
-  # luasnip is a depdenency for copilot I guess?
-  luasnip.enable = true;
-  copilot-lua = {
-    panel.enabled = false;
-    suggestion.enabled = false;
-  };
-
-  copilot-cmp = {
-    enable = true;
-  };
 }
