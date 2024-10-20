@@ -66,7 +66,7 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
     fugitive.enable = true;
     nvim-autopairs.enable = true;
     trouble.enable = true;
-    
+
 
     # Some AI bs
     avante = {
@@ -106,6 +106,16 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
     };
 
     treesitter.enable = true;
+    # luasnip is a depdenency for copilot I guess?
+    luasnip.enable = true;
+    copilot-lua = {
+      panel.enabled = false;
+      suggestion.enabled = false;
+    };
+
+    copilot-cmp = {
+      enable = true;
+    };
 
     lsp = {
       enable = true;
@@ -418,11 +428,11 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
   colorschemes.base16.enable = true;
   colorschemes.base16.colorscheme = "one-light";
   enableMan = true;
-  # imports = [
-  #   ./nvim/completion/cmp.nix
-  #   ./nvim/completion/copilot-cmp.nix
-  #   ./nvim/completion/lspkind.nix
-  # ];
+  imports = [
+    ./completion/cmp.nix
+    #   ./nvim/completion/copilot-cmp.nix
+    #   ./nvim/completion/lspkind.nix
+  ];
 
   extraConfigLua = ''
     -- Set up airline
