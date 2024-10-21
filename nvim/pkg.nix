@@ -418,7 +418,7 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
   ];
 
   colorschemes.base16.enable = true;
-  colorschemes.base16.colorscheme = "one-light";
+  colorschemes.base16.colorscheme = "solarized-light";
   enableMan = true;
   imports = [
     ./ai.nix
@@ -439,5 +439,6 @@ nixvim.legacyPackages."${pkgs.stdenv.hostPlatform.system}".makeNixvim {
     vim.g['indent_guides_guide_size']  = 1
     vim.g['indent_guides_enable_on_vim_startup'] = 1
     vim.g['indent_guides_auto_colors'] = 0
+    vim.cmd('colorscheme base16-solarized-light')
   '';
 }
